@@ -9,7 +9,6 @@ using namespace std;
 
 void distance(Point &P1, Point &P2, double &d) {
     d = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
-
 }
 void heronArea(Triangle &t, double &area) {
     double a = 0.0, b = 0.0, c = 0.0;
@@ -37,15 +36,13 @@ void checkPointPosition(Point &p,Triangle &t) {
 
     bool all_pos = (cp1 > 0) || (cp2 > 0) || (cp3 > 0);
     bool all_neg = (cp1 < 0) || (cp2 < 0) || (cp3 < 0);
-    // 1. Спочатку відсіюємо всі точки, що знаходяться зовні
+
     if (all_pos && all_neg) {
         cout << "Точка знаходиться ззовні трикутнику" << endl;
     }
-    // 2. Лише якщо точка точно НЕ зовні, перевіряємо, чи лежить вона на межі
     else if (cp1 == 0 || cp2 == 0 || cp3 == 0) {
         cout << "Точка знаходиться на стороні трикутника" << endl;
     }
-    // 3. У всіх інших випадках точка всередині
     else {
         cout << "Точка знаходиться всередині трикутника" << endl;
     }

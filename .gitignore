@@ -101,4 +101,5 @@ _deps
 CMakeUserPresets.json
 
 .idea/
+./main
 
