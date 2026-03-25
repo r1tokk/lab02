@@ -19,7 +19,6 @@ void heronArea(Triangle &t, double &area) {
 
     area = sqrt(halfP * (halfP - a) * (halfP  - b) * (halfP - c));
 }
-
 void isTriangleReal(Triangle &t, bool &result) {
     double area = 0.0;
     heronArea(t, area);
