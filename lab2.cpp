@@ -19,6 +19,11 @@ void heronArea(Triangle &t, double &area) {
 
     area = sqrt(halfP * (halfP - a) * (halfP  - b) * (halfP - c));
 }
+double Triangle::area() {
+    double s;
+    heronArea(*this, s);
+    return s;
+}
 void isTriangleReal(Triangle &t, bool &result) {
     double area = 0.0;
     heronArea(t, area);
@@ -27,11 +32,11 @@ void isTriangleReal(Triangle &t, bool &result) {
 void crossProduct(Point &a, Point &b, Point &c, double &result) {
     result = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 }
-void checkPointPositionVector(Point &p,Triangle &t) {
+void Triangle::checkPointPositionVector(Point &p) {
     double cp1, cp2, cp3;
-    crossProduct(t.A, t.B, p, cp1);
-    crossProduct(t.B, t.C, p, cp2);
-    crossProduct(t.C, t.A, p, cp3);
+    crossProduct(A, B, p, cp1);
+    crossProduct(B, C, p, cp2);
+    crossProduct(C, A, p, cp3);
 
     bool all_pos = (cp1 > 1e-9) || (cp2 > 1e-9) || (cp3 > 1e-9);
     bool all_neg = (cp1 < -1e-9) || (cp2 < -1e-9) || (cp3 < -1e-9);
@@ -46,24 +51,17 @@ void checkPointPositionVector(Point &p,Triangle &t) {
         cout << "Точка знаходиться всередині трикутника (За методом векторного добутку)" << endl;
     }
 }
-void checkPointPositionByArea(Point &p,Triangle &t) {
+void Triangle::checkPointPositionByArea(Point &p) {
     double area_main = 0.0;
-    double area_1 = 0.0;
-    double area_2 = 0.0;
-    double area_3 = 0.0;
 
-    Triangle t1 = {t.A, t.B, p};
-    Triangle t2 = {t.B, t.C, p};
-    Triangle t3 = {t.C, t.A, p};
+    Triangle t1 = {A, B, p};
+    Triangle t2 = {B, C, p};
+    Triangle t3 = {C, A, p};
 
-    heronArea(t, area_main);
-    heronArea(t1, area_1);
-    heronArea(t2, area_2);
-    heronArea(t3, area_3);
-
-    double area_sum = area_1 + area_2 + area_3;
-    if (fabs(area_main - area_sum) < 1e-9) {
-        if (area_1 < 1e-9 || area_2 < 1e-9 || area_3 < 1e-9) {
+    heronArea(*this, area_main);
+    double area_sum = t1.area() + t2.area() + t3.area();
+    if (fabs(area_main - area_sum) < 1e-12) {
+        if (t1.area() < 1e-12 || t2.area() < 1e-12 || t3.area() < 1e-12) {
             cout << "Точка знаходиться на стороні трикутника (За методом площі)" << endl;
         } else {
             cout << "Точка знаходиться всередині трикутника (За методом площі)" << endl;
@@ -73,6 +71,8 @@ void checkPointPositionByArea(Point &p,Triangle &t) {
     }
 
 }
+
+
 void startingPoint() {
     Triangle t{};
 
@@ -101,7 +101,7 @@ void startingPoint() {
         cout << "Введіть координати точки " << i + 1 << " (x y): ";
         cin >> p.x >> p.y;
 
-        checkPointPositionVector(p, t);
-        checkPointPositionByArea(p, t);
+        t.checkPointPositionVector(p);
+        t.checkPointPositionByArea(p);
     }
 }
