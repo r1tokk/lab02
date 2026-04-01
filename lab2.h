@@ -16,6 +16,7 @@ struct Triangle {
 };
 
 void distance(Point &P1, Point &P2, double &d);
+bool areNearlyEqualToZero(double a, double b);
 void heronArea(Triangle &t, double &area);
 void isTriangleReal(Triangle &t, bool &result);
 void startingPoint();
