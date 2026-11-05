@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "john doe",
+    "age": 25,
+    "city": "Delhi",
+    "purchases": [100.0, 50.0]
+  },
+  {
+    "id": 2,
+    "name": "jane smith",
+    "age": 17,
+    "city": "London",
+    "purchases": [300.0]
+  },
+  {
+    "id": 3,
+    "name": "bob",
+    "age": 30,
+    "city": "Paris",
+    "purchases": [200.0]
+  },
+  {
+    "id": 4,
+    "name": "alice",
+    "age": 22,
+    "city": "Delhi",
+    "purchases": [200.0]
+  },
+  {
+    "id": 5,
+    "name": "charlie",
+    "age": 45,
+    "city": "Kyiv",
+    "purchases": [50.0, 10.0, 20.0]
+  }
+]
